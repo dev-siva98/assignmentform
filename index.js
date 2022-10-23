@@ -3,7 +3,7 @@ let handleSubmit = (event) => {
   let name = document.forms["form"]["name"].value.trim();
   let gender = document.forms["form"]["gender"].value;
   let studentClass = document.forms["form"]["class"].value;
-  let division = document.forms["form"]["division"].value.trim();
+  let division = document.forms["form"]["division"].value;
   let dob = document.forms["form"]["dob"].value;
   if (name && gender && studentClass && division && dob) {
     alert(
@@ -13,15 +13,23 @@ let handleSubmit = (event) => {
         gender +
         "\nClass: " +
         studentClass +
-        "\nDivision:" +
+        "\nDivision: " +
         division +
         "\nDob: " +
         dob
     );
+    document.forms['form'].reset();
   }
   name
     ? document.getElementById("name").classList.remove("error")
     : document.getElementById("name").classList.add("error");
+  gender
+    ? document
+        .getElementById("error-message")
+        .classList.remove("error-message-active")
+    : document
+        .getElementById("error-message")
+        .classList.add("error-message-active");
   studentClass
     ? document.getElementById("class").classList.remove("error")
     : document.getElementById("class").classList.add("error");
@@ -31,7 +39,4 @@ let handleSubmit = (event) => {
   dob
     ? document.getElementById("dob").classList.remove("error")
     : document.getElementById("dob").classList.add("error");
-  gender
-    ? document.getElementById("error-message").classList.remove("error-message-active")
-    : document.getElementById("error-message").classList.add("error-message-active");
 };
