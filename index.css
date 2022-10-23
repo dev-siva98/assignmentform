@@ -31,8 +31,27 @@
 }
 
 .error {
-    border: 1px solid #db0707;
+    border: 1px solid #db0707 !important;
     background-color: #ffdada;
+}
+
+.selection-input {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+}
+
+.error-message {
+  position: absolute;
+  right: 0;
+  bottom: -15px;
+  color: #db0707;
+  font-size: 15px;
+  visibility: hidden;
+}
+
+.error-message-active {
+  visibility: visible;
 }
 
 .submit-button {
@@ -52,4 +71,8 @@
 .submit-button:hover {
   background-color: #055bac;
   border: 1px solid #044583;
+}
+
+.submit-button:active {
+    transform: scale(0.9);
 }

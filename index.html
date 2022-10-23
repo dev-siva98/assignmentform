@@ -1,29 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Form</title>
-    <link rel="stylesheet" href="index.css">
-</head>
-<body>
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body>
     <div class="form-container">
-        <h1>Student details</h1>
-        <form id="form" class="form" onsubmit="handleSubmit(event)">
-            <label for="name">Name</label>
-            <input type="text" id="name">
-            <label for="gender">Gender</label>
-            <input type="text" id="gender">
-            <label for="class">Class</label>
-            <input type="text" id="class">
-            <label for="division">Division</label>
-            <input type="text" id="division">
-            <label for="dob">DOB</label>
-            <input type="date" id="dob">
-            <input type="submit" value="Submit" class="submit-button">
-        </form>
+      <h1>Student details</h1>
+      <form id="form" class="form" onsubmit="handleSubmit(event)">
+        <label for="name">Name</label>
+        <input type="text" id="name" />
+        <p>Gender</p>
+        <div class="selection-input">
+          <label for="male">
+            <input value="male" type="radio" id="male" name="gender" />
+            Male
+          </label>
+          <label for="female">
+            <input value="female" type="radio" id="female" name="gender" />
+            Female
+          </label>
+          <label for="other">
+            <input value="other" type="radio" id="other" name="gender" />
+            Other
+          </label>
+          <p class="error-message" id="error-message">*select gender</p>
+        </div>
+        <label for="class">Class</label>
+        <input type="number" min="1" max="12" id="class" />
+        <label for="division">Division</label>
+        <input type="text" id="division" />
+        <label for="dob">DOB</label>
+        <input type="date" id="dob" />
+        <input type="submit" value="Submit" class="submit-button" />
+      </form>
     </div>
     <script src="index.js"></script>
-</body>
+  </body>
 </html>
