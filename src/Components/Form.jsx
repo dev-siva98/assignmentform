@@ -10,11 +10,6 @@ function Form() {
     division: "",
     dob: "",
   });
-  // const [errorName, setErrorName] = useState(false);
-  // const [errorGender, setErrorGender] = useState(false);
-  // const [errorClass, setErrorClass] = useState(false);
-  // const [errorDivision, setErrorDivision] = useState(false);
-  // const [errorDob, setErrorDob] = useState(false);
   const [errors, setErrors] = useState({
     name: false,
     gender: false,
@@ -25,31 +20,30 @@ function Form() {
 
   const changeInput = (e) => {
     e.preventDefault();
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-    setErrors({ ...errors, [e.target.name]: false });
+    const data = { ...formData };
+    const error = { ...errors };
+    data[e.target.name] = e.target.value;
+    error[e.target.name] = false;
+    setFormData(data);
+    setErrors(error);
   };
   const handleSubmit = (e) => {
     e.preventDefault();
+
     const { name, gender, classVal, division, dob } = formData;
+    let error = { ...errors };
+
     if (name && gender && classVal && division && dob)
       alert(JSON.stringify(formData));
-    else {
-      name
-        ? setErrors({ ...errors, name: false })
-        : setErrors({ ...errors, name: true });
-      gender
-        ? setErrors({ ...errors, gender: false })
-        : setErrors({ ...errors, gender: true });
-      classVal
-        ? setErrors({ ...errors, classVal: false })
-        : setErrors({ ...errors, classVal: true });
-      division
-        ? setErrors({ ...errors, division: false })
-        : setErrors({ ...errors, division: true });
-      dob
-        ? setErrors({ ...errors, dob: false })
-        : setErrors({ ...errors, dob: true });
-    }
+
+    name ? (error.name = false) : (error.name = true);
+    gender ? (error.gender = false) : (error.gender = true);
+    classVal ? (error.classVal = false) : (error.classVal = true);
+    division ? (error.division = false) : (error.division = true);
+    dob ? (error.dob = false) : (error.dob = true);
+
+    setErrors(error);
+    console.log(formData, errors);
   };
 
   return (
