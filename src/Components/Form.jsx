@@ -19,10 +19,9 @@ function Form() {
   });
 
   const changeInput = (e) => {
-    e.preventDefault();
     const data = { ...formData };
     const error = { ...errors };
-    data[e.target.name] = e.target.value;
+    data[e.target.name] = e.target.value.trim();
     error[e.target.name] = false;
     setFormData(data);
     setErrors(error);
@@ -43,7 +42,6 @@ function Form() {
     dob ? (error.dob = false) : (error.dob = true);
 
     setErrors(error);
-    console.log(formData, errors);
   };
 
   return (
