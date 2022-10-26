@@ -19,12 +19,12 @@ function Form() {
   });
 
   const changeInput = (e) => {
-    const data = { ...formData };
-    const error = { ...errors };
-    data[e.target.name] = e.target.value.trim();
-    error[e.target.name] = false;
-    setFormData(data);
-    setErrors(error);
+    setFormData((preFormData) => {
+      return { ...preFormData, [e.target.name]: e.target.value.trim() };
+    });
+    setErrors((preErrors) => {
+      return { ...preErrors, [e.target.name]: false };
+    });
   };
   const handleSubmit = (e) => {
     e.preventDefault();
