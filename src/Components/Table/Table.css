@@ -1,0 +1,22 @@
+.table-container {
+  padding: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px;
+}
+
+.document-container {
+  border: 1px solid black;
+  padding: 20px;
+  width: fit-content;
+}
+
+.document-field {
+  display: flex;
+  margin: 5px 0;
+}
+
+.document-field p:first-child {
+  color: #444;
+  margin-right: 10px;
+}
