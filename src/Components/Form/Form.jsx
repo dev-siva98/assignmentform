@@ -1,9 +1,11 @@
 import React from "react";
 import { useState } from "react";
+import axios from "../../axios";
 import "./Form.css";
 
 function Form() {
   const [formData, setFormData] = useState({
+    _id: "",
     name: "",
     gender: "",
     classVal: "",
@@ -11,6 +13,7 @@ function Form() {
     dob: "",
   });
   const [errors, setErrors] = useState({
+    _id: false,
     name: false,
     gender: false,
     classVal: false,
@@ -29,12 +32,31 @@ function Form() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const { name, gender, classVal, division, dob } = formData;
+    const { _id, name, gender, classVal, division, dob } = formData;
     let error = { ...errors };
 
-    if (name && gender && classVal && division && dob)
-      alert(JSON.stringify(formData));
+    if (name && gender && classVal && division && dob) {
+      axios({
+        method: "post",
+        url: "user/form",
+        data: {
+          _id,
+          name,
+          gender,
+          classVal,
+          division,
+          dob,
+        },
+      })
+        .then((response) => {
+          console.log(response.data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
 
+    _id ? (error._id = false) : (error._id = true);
     name ? (error.name = false) : (error.name = true);
     gender ? (error.gender = false) : (error.gender = true);
     classVal ? (error.classVal = false) : (error.classVal = true);
@@ -48,6 +70,14 @@ function Form() {
     <div className="form-container">
       <h1>Student details</h1>
       <form id="form" className="form" onSubmit={handleSubmit}>
+      <label>Student Id</label>
+        <input
+          type="text"
+          id="_id"
+          name="_id"
+          onChange={changeInput}
+          className={errors._id ? "error" : ""}
+        />
         <label>Name</label>
         <input
           type="text"
